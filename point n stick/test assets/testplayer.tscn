@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2flbxb1cm0bq"]
+
+[ext_resource type="Texture2D" uid="uid://dqurxveqy7oei" path="res://test assets/sprite/test-player-sprite.png" id="1_n8acg"]
+
+[node name="testplayer" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_n8acg")

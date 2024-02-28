@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3026eiualowa"]
+
+[ext_resource type="Script" path="res://test assets/script/interact_testroom_1.gd" id="1_1bkrv"]
+[ext_resource type="Texture2D" uid="uid://el6s4jox60o5" path="res://test assets/sprite/test-room1.png" id="1_jcuwy"]
+[ext_resource type="Texture2D" uid="uid://dmupehxvmiw6b" path="res://test assets/sprite/test-dialoguebox.png" id="3_rdmlo"]
+[ext_resource type="Texture2D" uid="uid://duubjpg48hemb" path="res://test assets/sprite/test-purple-sprite.png" id="4_00v6c"]
+[ext_resource type="Texture2D" uid="uid://byk8ss3nib0hc" path="res://test assets/sprite/hud-base.png" id="5_hml6o"]
+[ext_resource type="Texture2D" uid="uid://dqurxveqy7oei" path="res://test assets/sprite/test-player-sprite.png" id="6_nqemy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vm3rp"]
+line_spacing = 0.0
+font_color = Color(0, 0, 0, 1)
+
+[node name="testroom1" type="Node2D"]
+script = ExtResource("1_1bkrv")
+
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 360)
+texture = ExtResource("1_jcuwy")
+
+[node name="purple" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 961.0
+offset_top = 452.0
+offset_right = 998.0
+offset_bottom = 556.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_00v6c")
+
+[node name="cat_poster" type="TextureButton" parent="."]
+offset_left = 300.0
+offset_top = 279.0
+offset_right = 461.0
+offset_bottom = 427.0
+mouse_default_cursor_shape = 2
+
+[node name="window" type="TextureButton" parent="."]
+offset_left = 114.0
+offset_top = 236.0
+offset_right = 208.0
+offset_bottom = 426.0
+mouse_default_cursor_shape = 2
+
+[node name="scrimblo" type="TextureButton" parent="."]
+offset_left = 859.0
+offset_top = 160.0
+offset_right = 972.0
+offset_bottom = 269.0
+mouse_default_cursor_shape = 2
+
+[node name="light" type="TextureButton" parent="."]
+offset_left = 571.0
+offset_top = 14.0
+offset_right = 683.0
+offset_bottom = 65.0
+mouse_default_cursor_shape = 2
+
+[node name="textbox" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 526.0
+offset_top = 282.0
+offset_right = 654.0
+offset_bottom = 410.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_rdmlo")
+
+[node name="text_purple" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 123.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "That's Purple.
+He's my good
+friend. He likes
+to juggle in his
+free time."
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="text_catposter" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 45.0
+offset_right = 123.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Lol.
+"
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="text_window" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 12.0
+offset_right = 124.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "There's a single
+tree outside.
+It must be a
+singularitree.
+"
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="text_scrimblo" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 37.0
+offset_right = 124.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Never heard
+of it.
+"
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="text_light" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 124.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "You know, I
+tend to look up
+to lights a lot.
+They brighten
+my day."
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="HUD" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 360)
+texture = ExtResource("5_hml6o")
+
+[node name="Test-player-sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(514, 445)
+texture = ExtResource("6_nqemy")
+
+[connection signal="pressed" from="purple" to="." method="_on_purple_pressed"]
+[connection signal="pressed" from="cat_poster" to="." method="_on_cat_poster_pressed"]
+[connection signal="pressed" from="window" to="." method="_on_window_pressed"]
+[connection signal="pressed" from="scrimblo" to="." method="_on_scrimblo_pressed"]
+[connection signal="pressed" from="light" to="." method="_on_light_pressed"]
