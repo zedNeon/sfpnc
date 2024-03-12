@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3026eiualowa"]
+[gd_scene load_steps=10 format=3 uid="uid://c3026eiualowa"]
 
 [ext_resource type="Script" path="res://test assets/script/interact_testroom_1.gd" id="1_1bkrv"]
 [ext_resource type="Texture2D" uid="uid://el6s4jox60o5" path="res://test assets/sprite/test-room1.png" id="1_jcuwy"]
 [ext_resource type="Texture2D" uid="uid://dmupehxvmiw6b" path="res://test assets/sprite/test-dialoguebox.png" id="3_rdmlo"]
 [ext_resource type="Texture2D" uid="uid://duubjpg48hemb" path="res://test assets/sprite/test-purple-sprite.png" id="4_00v6c"]
+[ext_resource type="Texture2D" uid="uid://dmx5s3o8yrlkq" path="res://test assets/sprite/item_testkey.png" id="4_5lb0t"]
 [ext_resource type="Texture2D" uid="uid://byk8ss3nib0hc" path="res://test assets/sprite/hud-base.png" id="5_hml6o"]
 [ext_resource type="Texture2D" uid="uid://dqurxveqy7oei" path="res://test assets/sprite/test-player-sprite.png" id="6_nqemy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljhsj"]
+size = Vector2(64, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vm3rp"]
 line_spacing = 0.0
@@ -19,6 +23,11 @@ texture_filter = 1
 position = Vector2(640, 360)
 texture = ExtResource("1_jcuwy")
 
+[node name="HUD" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 360)
+texture = ExtResource("5_hml6o")
+
 [node name="purple" type="TextureButton" parent="."]
 texture_filter = 1
 offset_left = 961.0
@@ -27,6 +36,15 @@ offset_right = 998.0
 offset_bottom = 556.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("4_00v6c")
+
+[node name="item_key" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 424.0
+offset_top = 568.0
+offset_right = 456.0
+offset_bottom = 581.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_5lb0t")
 
 [node name="cat_poster" type="TextureButton" parent="."]
 offset_left = 300.0
@@ -56,6 +74,20 @@ offset_right = 683.0
 offset_bottom = 65.0
 mouse_default_cursor_shape = 2
 
+[node name="selectable" type="StaticBody2D" parent="."]
+position = Vector2(189, 656)
+metadata/_edit_group_ = true
+metadata/selectable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="selectable"]
+shape = SubResource("RectangleShape2D_ljhsj")
+
+[node name="hud_item_key" type="Sprite2D" parent="selectable"]
+z_index = 4
+texture_filter = 1
+scale = Vector2(1.73077, 1.73077)
+texture = ExtResource("4_5lb0t")
+
 [node name="textbox" type="TextureButton" parent="."]
 texture_filter = 1
 offset_left = 526.0
@@ -69,15 +101,40 @@ texture_normal = ExtResource("3_rdmlo")
 visible = false
 layout_mode = 0
 offset_left = 7.0
-offset_top = 1.0
+offset_top = 34.0
 offset_right = 123.0
-offset_bottom = 116.0
+offset_bottom = 80.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "That's Purple.
-He's my good
-friend. He likes
-to juggle in his
-free time."
+text = "That's my
+friend, Purple."
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="text_purple2" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = 35.0
+offset_right = 123.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "He likes nature
+and narwhals."
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="text_purple3" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = 13.0
+offset_right = 123.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "One time
+he said he
+\"wishes they
+were real\"."
 label_settings = SubResource("LabelSettings_vm3rp")
 horizontal_alignment = 1
 
@@ -140,17 +197,31 @@ my day."
 label_settings = SubResource("LabelSettings_vm3rp")
 horizontal_alignment = 1
 
-[node name="HUD" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(640, 360)
-texture = ExtResource("5_hml6o")
+[node name="text_key" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 26.0
+offset_right = 124.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "This key looks
+like it might
+be useful."
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
 
 [node name="Test-player-sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(514, 445)
 texture = ExtResource("6_nqemy")
 
+[node name="mouse_ray" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+hit_from_inside = true
+
 [connection signal="pressed" from="purple" to="." method="_on_purple_pressed"]
+[connection signal="pressed" from="item_key" to="." method="_on_item_key_pressed"]
 [connection signal="pressed" from="cat_poster" to="." method="_on_cat_poster_pressed"]
 [connection signal="pressed" from="window" to="." method="_on_window_pressed"]
 [connection signal="pressed" from="scrimblo" to="." method="_on_scrimblo_pressed"]
