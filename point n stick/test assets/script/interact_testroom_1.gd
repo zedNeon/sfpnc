@@ -7,12 +7,15 @@ var cycle_completed = false
 var selected
 var selected_position
 
+var item_on_door
+var door_is_locked = true
+
 @onready var purple_text = [$textbox/text_purple, $textbox/text_purple2, $textbox/text_purple3]
 var purple_num = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$textbox.hide()
-	$selectable/hud_item_key.hide()
+	$selectable.hide()
 	text_purple = false
 #	selected_position = selected.global_position
 
@@ -25,12 +28,14 @@ func _process(delta):
 		$window.disabled = true
 		$scrimblo.disabled = true
 		$light.disabled = true
+		$door.disabled = true
 	elif disable_all == false:
 		$purple.disabled = false
 		$cat_poster.disabled = false
 		$window.disabled = false
 		$scrimblo.disabled = false
 		$light.disabled = false
+		$door.disabled = false
 	
 	# for dialogue with 1 textbox
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and disable_all == true and text_purple == false:
@@ -40,6 +45,8 @@ func _process(delta):
 		$textbox/text_light.hide()
 		$textbox/text_scrimblo.hide()
 		$textbox/text_key.hide()
+		$textbox/text_door_locked.hide()
+		$textbox/text_unlock.hide()
 		disable_all = false
 		
 	if text_purple:
@@ -69,7 +76,15 @@ func _process(delta):
 		selected_position = selected.global_position
 	elif selected != null and Input.is_action_pressed("click"):
 		selected.global_position = $mouse_ray.global_position
-	elif selected != null and Input.is_action_just_released("click"):
+	elif selected != null and Input.is_action_just_released("click") and item_on_door == true and door_is_locked == true:
+		disable_all = true
+		door_is_locked = false
+		selected.global_position = selected_position
+		selected = null
+		$selectable.queue_free()
+		$textbox.show()
+		$textbox/text_unlock.show()
+	elif selected != null and Input.is_action_just_released("click") and item_on_door == false:
 		selected.global_position = selected_position
 		selected = null
 
@@ -101,12 +116,29 @@ func _on_light_pressed():
 	disable_all = true
 	$textbox.show()
 	$textbox/text_light.show()
-
-
+	
 func _on_item_key_pressed():
 	disable_all = true
 	$item_key.disabled = true
 	$textbox.show()
 	$textbox/text_key.show()
 	$item_key.hide()
-	$selectable/hud_item_key.show()
+	$selectable.show()
+
+func _on_door_pressed():
+	if door_is_locked == true:
+		disable_all = true
+		$textbox.show()
+		$textbox/text_door_locked.show()
+	elif door_is_locked == false:
+		get_tree().change_scene_to_file("res://testroom_2.tscn")
+
+func _on_interact_door_mouse_entered():
+	item_on_door = true
+func _on_interact_door_mouse_exited():
+	item_on_door = false
+	
+	
+	
+	
+#	hi modders
