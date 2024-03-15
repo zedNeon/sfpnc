@@ -241,6 +241,20 @@ a key nearby."
 label_settings = SubResource("LabelSettings_vm3rp")
 horizontal_alignment = 1
 
+[node name="text_door_lockedbuthaskey" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 26.0
+offset_right = 124.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "It's locked.
+Maybe the key
+I have will fit!"
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
 [node name="text_unlock" type="Label" parent="textbox"]
 visible = false
 layout_mode = 0
@@ -252,6 +266,46 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "The key fit
 perfectly into
 the keyhole."
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="text_unlock3" type="Label" parent="textbox"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 124.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Purple, I'm
+surprised you
+even know
+what a square
+hole is."
+label_settings = SubResource("LabelSettings_vm3rp")
+horizontal_alignment = 1
+
+[node name="textbox2" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 843.0
+offset_top = 321.0
+offset_right = 971.0
+offset_bottom = 449.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_rdmlo")
+flip_h = true
+
+[node name="text_unlock2" type="Label" parent="textbox2"]
+visible = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = 26.0
+offset_right = 122.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Actually, it
+goes in the
+square hole."
 label_settings = SubResource("LabelSettings_vm3rp")
 horizontal_alignment = 1
 
